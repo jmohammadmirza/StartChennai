@@ -1,0 +1,245 @@
+
+<!doctype>
+<html>
+
+<head>
+<meta charset="utf-8">
+
+<meta http-equiv="cache-control" content="no-cache" /> 
+<meta http-equiv="Content-Type" content="application/vnd.wap.xhtml+xml" /> 
+<meta name="HandheldFriendly" content="True" /> 
+<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta name="description" content="Startup incubator space in Boston" />
+
+<link rel="shortcut icon" href="http://where-spotlight.s3.amazonaws.com/start-tank/favicon.png" />
+<link rel="apple-touch-icon" href="https://www.paypalobjects.com/en_US/i/pui/apple-touch-icon.png" />
+<link href="c/master.css" rel="stylesheet" type="text/css" />
+<!--[if IE]>
+<link href="c/desktop.css" rel="stylesheet" type="text/css" />
+<link href="c/ie9.css" rel="stylesheet" type="text/css" />
+<style>.startups img, .mentors img {opacity:1;}</style>
+<![endif]-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="j/ppmn.js"></script>
+<script type="text/javascript" src="j/nbw-parallax.js"></script>
+<script type="text/javascript" src="j/jquery.inview.js"></script>
+
+
+<title>Calendar | Start Tank</title>
+
+</head>
+
+<body class="about4 calendar_page">
+	
+<div class="navParent">
+		<div class="navChild">
+			<a href="Start.html"><img class="logo" src="i/starttank.PNG"/></a>
+			<ul>
+				<li class="contact"><a href="Apply.html">Apply</a></li>
+				<li><a href="Calender.html">Calendar</a></li>
+				<li><a href="Community.html"><span class="hideOnMobile">Current </span>Startups</a></li>
+				<li><a href="Press.html">Press</a></li>
+				<li><a href="About.html">About</a></li>
+                
+			</ul>
+		</div><!-- /navChild -->
+	</div><!-- /navParent -->
+
+<div class="onecolumn">
+<div class="row news">
+	<h1>Past Events</h1>
+    
+    <ul>
+
+<li>
+      <span class="blue"> Sponsors for <a href="http://chennai.startupweekend.org/"> Startup Weekend Chennai </a>July 11-13, 2014 </span>
+    <p>&nbsp; </p>
+
+</li>
+
+
+    <li >
+   <span class="blue">Two Startup companies,MuSurvey and TinyWall were incubated in Start tank  Chennai on 25 February 2014 and 25 March 2014 respectively.</span>
+    <p>&nbsp; </p>
+    </li>
+      
+        <li >
+   <span class="blue"> Two Startup companies Fantain and Kobter were incubated in Start tank  Chennai on 14 October 2013.</span>
+       <p>&nbsp; </p>
+       </li>
+   
+    <li>
+   <span class="blue"> MoU Signed between PayPal and TiE Chennai on 1 October 2013.</span>
+     <p>&nbsp; </p>
+    </li>
+    </ul>
+    </div>
+    </div>
+	<!--
+<script type="text/javascript">
+<!--
+/**
+ * Converts an xs:date or xs:dateTime formatted string into the local timezone
+ * and outputs a human-readable form of this date or date/time.
+ *
+ * @param {string} gCalTime is the xs:date or xs:dateTime formatted string
+ * @return {string} is the human-readable date or date/time string
+ */
+function formatGCalTime(gCalTime) { 
+  // text for regex matches
+  var remtxt = gCalTime;
+
+  function consume(retxt) {
+    var match = remtxt.match(new RegExp('^' + retxt));
+    if (match) {
+      remtxt = remtxt.substring(match[0].length);
+      return match[0];
+    }
+    return '';
+  }
+
+  // minutes of correction between gCalTime and GMT
+  var totalCorrMins = 0;
+
+  var year = consume('\\d{4}');
+  consume('-?');
+  var month = consume('\\d{2}');
+  consume('-?');
+  var dateMonth = consume('\\d{2}');
+  var timeOrNot = consume('T');
+
+  // if a DATE-TIME was matched in the regex 
+  if (timeOrNot == 'T') {
+    var hours = consume('\\d{2}');
+    consume(':?');
+    var mins = consume('\\d{2}');
+    consume('(:\\d{2})?(\\.\\d{3})?');
+    var zuluOrNot = consume('Z');
+
+    // if time from server is not already in GMT, calculate offset
+    if (zuluOrNot != 'Z') {
+      var corrPlusMinus = consume('[\\+\\-]');
+      if (corrPlusMinus != '') {
+        var corrHours = consume('\\d{2}');
+        consume(':?');
+        var corrMins = consume('\\d{2}');
+        totalCorrMins = (corrPlusMinus=='-' ? 1 : -1) * 
+            (Number(corrHours) * 60 + 
+	    (corrMins=='' ? 0 : Number(corrMins)));
+      }
+    } 
+
+    // get time since epoch and apply correction, if necessary
+    // relies upon Date object to convert the GMT time to the local
+    // timezone
+    var originalDateEpoch = Date.UTC(year, month - 1, dateMonth, hours, mins);
+    var gmtDateEpoch = originalDateEpoch + totalCorrMins * 1000 * 60;
+    var ld = new Date(gmtDateEpoch);
+
+    // date is originally in YYYY-MM-DD format
+    // time is originally in a 24-hour format
+    // this converts it to MM/DD hh:mm (AM|PM) 
+    dateString = (ld.getMonth() + 1) + '.' + ld.getDate() + ' ' + 
+        ((ld.getHours()>12)?(ld.getHours()-12):(ld.getHours()===0?12:
+	ld.getHours())) + ':' + ((ld.getMinutes()<10)?('0' + 
+	ld.getMinutes()):(ld.getMinutes())) + ' ' + 
+	((ld.getHours()>=12)?'pm':'am');
+  } else {
+    // if only a DATE was matched
+    dateString =  parseInt(month, 10) + '.' + parseInt(dateMonth, 10);
+  }
+  return dateString;
+}
+
+/**
+ * Creates an unordered list of events in a human-readable form
+ *
+ * @param {json} root is the root JSON-formatted content from GData
+ * @param {string} divId is the div in which the events are added
+ */ 
+function listEvents(root, divId) {
+  var feed = root.feed;
+  var events = document.getElementById(divId);
+
+  if (events.childNodes.length > 0) {
+    events.removeChild(events.childNodes[0]);
+  }	  
+
+  // create a new unordered list
+  var ul = document.createElement('ul');
+
+  // loop through each event in the feed
+  for (var i = 0; i < feed.entry.length; i++) {
+    var entry = feed.entry[i];
+    var title = entry.title.$t;
+    var start = entry['gd$when'][0].startTime;
+
+    // get the URL to link to the event
+    for (var linki = 0; linki < entry['link'].length; linki++) {
+      if (entry['link'][linki]['type'] == 'text/html' &&
+          entry['link'][linki]['rel'] == 'alternate') {
+        var entryLinkHref = entry['link'][linki]['href'];
+      }
+    }
+
+    var dateString = formatGCalTime(start);
+    var li = document.createElement('li');
+
+    // if we have a link to the event, create an 'a' element
+    if (typeof entryLinkHref != 'undefined') {
+      entryLink = document.createElement('a');
+      entryLink.setAttribute('href', entryLinkHref);
+      entryLink.appendChild(document.createTextNode( dateString + ' - ' + title));
+      li.appendChild(entryLink);
+    } else {
+      li.appendChild(document.createTextNode(dateString + ' - ' + title));
+    }	    
+
+    // append the list item onto the unordered list
+    ul.appendChild(li);
+  }
+  events.appendChild(ul);
+}
+
+/**
+ * Callback function for the GData json-in-script call
+ * Inserts the supplied list of events into a div of a pre-defined name
+ * 
+ * @param {json} root is the JSON-formatted content from GData
+ */ 
+function insertAgenda(root) {
+  listEvents(root, 'agenda');
+}
+//-->
+<!--
+</script>
+<div id="agenda"><p>Loading...</p></div>
+<script type="text/javascript" src="http://www.google.com/calendar/feeds/starttank%40gmail.com/public/full?alt=json-in-script&callback=insertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true"></script>
+</div>
+			
+			<div class="clr"></div>
+			<div class="footer home">
+				<p>
+					&copy;<script type="text/javascript">
+					      now = new Date
+					      theYear=now.getYear()
+					      if (theYear < 1900)
+					      theYear=theYear+1900
+					      document.write(theYear)</script> PayPal Media Network. All Rights Reserved. &nbsp;&nbsp;
+					<a href="/terms/">Terms of Use</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+					<a href="/privacy/">Privacy</a>
+				</p>
+			</div>
+		
+			<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			  ga('create', 'UA-42859593-1', 'starttank.com');
+			  ga('send', 'pageview');
+
+			</script>	-->
+</body>
+</html>
